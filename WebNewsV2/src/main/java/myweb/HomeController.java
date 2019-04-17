@@ -243,9 +243,11 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/LuuTinTuc", method = RequestMethod.POST)
-	public String LuuEdit(@RequestParam(name="tieude") String tieude, @RequestParam(name="pic") String anh, 
-			@RequestParam(name="noidung") String noidung, @RequestParam(name="matintuc") String matintuc, Model model) { 
-		tintucService.UpdateNews(tieude, anh, noidung, matintuc); 
+	public String LuuEdit(@RequestParam(name="tieude") String tieude, @RequestParam(name="pic") MultipartFile anh, 
+			@RequestParam(name="noidung") String noidung, @RequestParam(name="matintuc") String matintuc, Model model) throws IOException { 
+		tintucService.UpdateNews(tieude, anh.getOriginalFilename(), noidung, matintuc); 
+		storageService.store(anh);
+		
 		model.addAttribute("list",tintucService.getAllDescByNgay());
 		return "QLTinTuc";
 	}

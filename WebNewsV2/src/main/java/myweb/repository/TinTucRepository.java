@@ -54,7 +54,7 @@ public interface TinTucRepository extends JpaRepository<TinTuc, String>{
 	
 	@Modifying
 	@Transactional
-	@Query(value = "Insert INTO dbtintuc (matintuc,tieude,anh,noidung,ngay,moi,phobien,tacgia,luotxem) "
+	@Query(value = "Insert INTO dbtintuc (matintuc,tieude,anh,noidung,ngay,tacgia,luotxem) "
 			+ "VALUES(:matintuc,:tieude,:anh,:noidung,NOW(),:tacgia,:luotxem)", nativeQuery=true)
 	void InsertNews(@Param("matintuc") String matintuc, @Param("tieude") String tieude, @Param("anh") String anh, @Param("noidung") String noidung, @Param("tacgia") String tacgia, @Param("luotxem") int luotxem);
 	
